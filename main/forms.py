@@ -1,8 +1,9 @@
-from django import forms
+from django.forms import ModelForm
+from main.models import Checkin
 
-class Checkin(forms.Form):
-    sickness = forms.CharField(max_length= 200)
-    meds = forms.CharField(max_length= 200)
-    orderloan = forms.IntegerField()
-
+class CheckinForm(ModelForm):
+    class Meta:
+        model = Checkin
+        fields = '__all__'
+    
     
