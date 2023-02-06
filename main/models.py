@@ -1,25 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User
-# Create your models here.
+from django.utils import timezone
 
 class Checkin(models.Model):
-	user = models.ForeignKey(User, on_delete=models.CASCADE) 
-	sickness = models.CharField(null= True, blank = True, default = "None",max_length= 200)
+    
+    sickness = models.CharField("Sickness",max_length= 200)
+    checkin_time = models.DateTimeField("Check-in Date" , default= timezone.now)
+    meds = models.TextField("Medication",)
+    meds_time = models.TimeField("Set Medication Alert Time", default= timezone.now)
 
-	def __str__(self):
+   
+def __str__(self): 
 		return self.sickness
-	
-
-class Medicine(models.Model):
-	checkin = models.ForeignKey(Checkin, on_delete=models.CASCADE) 
-	text = models.CharField(null= True, blank = True,max_length= 200, default= "None")
-	complete = models.BooleanField() 
-
-	def __str__(self):
-		return self.text
-
-
-class OrderLoan(models.Model):
-	checkin = models.ForeignKey(Checkin, on_delete=models.CASCADE) 
-	orderloan = models.IntegerField(default=0)
-	complete = models.BooleanField()
