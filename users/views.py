@@ -10,17 +10,20 @@ from main.forms import Checkin
 
 def registerPage(request):
     
-    '''if request.user.is_authenticated:
-        return redirect('login')
+    if request.user.is_authenticated:
+        return redirect('home1')
     
-    else:
-    '''
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            
+            user = form.save()
             user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was successfully created for' + user)
+            messages.success(request, f"Account was successfully created for {user.username}")
+
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
 
 
         return redirect("login")

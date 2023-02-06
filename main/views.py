@@ -7,7 +7,7 @@ from django.contrib import messages
 # Create your views here.
 
 from django.contrib.auth.decorators import login_required
-
+from .send_sms import sendsms
 
 
 def home(request):
@@ -21,9 +21,22 @@ def home1(request):
 
 		if form.is_valid():
 			form.save()
-			 
+               
+                 
+			sendsms()
+		return redirect('checkin')
 	else:
 		form = CheckinForm()
 	
 
 	return render(request, "main/home1.html", {"form":form})
+
+def profile():
+	pass
+		
+
+def orderloan():
+	pass
+
+def checkin(request):
+	return render(request, "main/checkin.html", {})

@@ -42,25 +42,33 @@
 
 <body>
     <div class = "sidenav"> 
+		<a href="/profile">Profile</a>
+		<a href="/home1">Check-in</a>
+		<a href="/orderloan">Order Loan</a>
 		<a href="/logout">Logout</a>
+
         
     </div>
     <div id="content", name="content", class="main">
 		<div class="row justify-content-center">
 			<div class="col-8">
-				<h2 class="mt-2">Welcome</h2>
+				<h3 class="mt-2">Welcome</h3>
 				<hr class="mt-0 mb-4">
                     {% load crispy_forms_tags %}
+				
 					{% block content %}
                         
-                        <h3>Check-in below to register an illness, order for medicine or order a loan</h3>
+                        <h4>Check-in below: </h4>
+						<p></p>
+						
+						<div>
                         <form method="POST" class="form-group">
                             {% csrf_token %}
                             {{form|crispy}}
                             <button type="submit" class="btn btn-success">Checkin</button>
 
                         </form>
-
+					</div>
 					{% endblock %}
 
 			</div>

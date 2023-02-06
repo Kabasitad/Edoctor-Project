@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     #custom apps
     'crispy_forms',
     'main',
-    'register',
+    'users',
     
     
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,3 +144,12 @@ CRISPY_TEMPLATE_PACK= "bootstrap4"
 
 LOGIN_REDIRECT_URL = "/home1/"
 LOGOUT_REDIRECT_URL = "/login/"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
